@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Nanogram Jams — build something. Ship it.">
+
+  <title>Nanogram Jams</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  >
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/account.css">
+</head>
+
+<body>
+<script>
+/* If the site fails to start, show why on the page instead of staying blank. */
+(function(){var errs=[];function show(){var p=document.getElementById("pg");if(!p||window.NG)return;
+p.innerHTML='<div style="padding:32px;font:14px/1.6 ui-monospace,monospace;white-space:pre-wrap">The site could not start.\n\n'+errs.join("\n")+'</div>'}
+window.addEventListener("error",function(e){var t=e.target;errs.push(t&&t.src?"Could not load "+t.src:(e.filename||"")+" "+e.message);show()},true);
+window.addEventListener("load",function(){if(!window.NG)show()})})();
+</script>
+
+
+  <!-- Ambient background -->
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+
+      <div class="brand">
+        <div class="mk" aria-hidden="true">
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <span class="brand-name">
+          nanogram
+          <span>Jams</span>
+        </span>
+
+        <button class="theme-toggle" id="themeBtn" type="button" aria-label="Change theme" title="Change theme">
+          <span id="themeIcon">◐</span><span id="themeText" class="sr-only">Theme</span>
+        </button>
+      </div>
+
+      <div class="acct" id="acct"></div>
+
+      <div class="side-tools">
+
+        <button
+          class="search-trigger"
+          id="searchTrigger"
+          type="button"
+        >
+          <span class="search-icon">⌕</span>
+          <span>Search jams</span>
+          <kbd>⌘ K</kbd>
+        </button>
+
+      </div>
+
+      <nav
+        class="list"
+        id="nav"
+        aria-label="Game jams"
+      ></nav>
+
+      <div class="sf">
+
+        <a
+          class="btn discord"
+          href="https://discord.com/invite/nanogram"
+          target="_blank"
+          rel="noopener"
+        >
+          Join our Discord
+        </a>
+
+        <p class="credit">Built by <strong>Yannirix Studios</strong></p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main>
+
+      <div
+        class="mobile-topbar"
+        id="mobileTopbar"
+      >
+        <button
+          class="mobile-menu"
+          id="mobileMenu"
+          type="button"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+        <div class="mobile-brand">
+          <div class="mk small-mark">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <strong>nanogram <span>Jams</span></strong>
+        </div>
+
+        <button
+          class="mobile-search"
+          id="mobileSearch"
+          type="button"
+          aria-label="Search"
+        >
+          ⌕
+        </button>
+
+        <button
+          class="mobile-search mobile-acct"
+          id="mobileAcct"
+          type="button"
+        ></button>
+      </div>
+
+
+      <div
+        class="page"
+        id="pg"
+      ></div>
+
+      <footer class="site-credit">Built by <strong>Yannirix Studios</strong></footer>
+
+    </main>
+
+  </div>
+
+
+  <!-- SEARCH / COMMAND PALETTE -->
+  <dialog
+    class="command-dialog"
+    id="commandDialog"
+  >
+
+    <div class="command">
+
+      <div class="command-head">
+
+        <div class="command-search">
+          <span>⌕</span>
+
+          <input
+            id="commandInput"
+            type="search"
+            autocomplete="off"
+            placeholder="Search jams and games..."
+          >
+
+          <kbd>ESC</kbd>
+        </div>
+
+      </div>
+
+      <div
+        class="command-results"
+        id="commandResults"
+      ></div>
+
+      <div class="command-footer">
+        <span>↑↓ Navigate</span>
+        <span>↵ Open</span>
+        <span>ESC Close</span>
+      </div>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- GAME MODAL -->
+  <dialog id="dlg">
+
+    <div id="dc"></div>
+
+  </dialog>
+
+
+  <!-- TOASTS -->
+  <div
+    class="toasts"
+    id="toasts"
+    aria-live="polite"
+  ></div>
+
+
+  <div class="scrim" id="scrim"></div>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/backend.mock.js"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/account.js"></script>
+
+</body>
+</html>
