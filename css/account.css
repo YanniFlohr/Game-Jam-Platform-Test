@@ -88,7 +88,7 @@ aside{backdrop-filter:none;-webkit-backdrop-filter:none}
 .drop.portrait{aspect-ratio:9/16;width:100%}
 .drop.has b,.drop.has small{display:none}
 .drop.has:after{content:"Change image";position:absolute;left:0;right:0;bottom:0;padding:22px 10px 10px;text-align:center;font:600 13px var(--b);color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .15s;border-radius:0 0 12px 12px}
-.drop.has:hover:after{opacity:1}
+@media (hover:hover){.drop.has:hover:after{opacity:1}}
 .ndlg.wide[open]{--p:26px;display:flex;flex-direction:column;padding:0;overflow:hidden;width:min(860px,94vw)}
 .pubf{display:flex;flex-direction:column;flex:1;min-height:0}
 .pub-head{flex:none;padding:24px 64px 6px var(--p)}
@@ -118,12 +118,12 @@ aside{backdrop-filter:none;-webkit-backdrop-filter:none}
 
 /* ===== Admin: delete button on game cards ===== */
 .card-del{position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.7);color:#fff;display:grid;place-items:center;font-size:12px;opacity:0;transition:opacity .15s,background .15s;z-index:3;cursor:pointer}
-.g:hover .card-del{opacity:1}.card-del:hover{background:#d92d20}
+@media (hover:hover){.g:hover .card-del{opacity:1}}@media (hover:hover){.card-del:hover{background:#d92d20}}
 @media(hover:none){.card-del{opacity:1}}
 
 /* ===== Layout clean-up ===== */
 .theme-toggle{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:16px;flex:none}
-.theme-toggle:hover{background:var(--panel2)}
+@media (hover:hover){.theme-toggle:hover{background:var(--panel2)}}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .nd-msg:empty{display:none}
 .top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
@@ -150,10 +150,11 @@ aside{backdrop-filter:none;-webkit-backdrop-filter:none}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);row-gap:2px}
 .cal-w{text-align:center;font:600 11px var(--b);color:var(--mute);padding:4px 0;text-transform:uppercase}
 .cal-d{height:38px;border:0;background:none;color:var(--ink);font:500 14px var(--b);cursor:pointer;border-radius:10px}
-.cal-d:hover{background:var(--panel2)}
+@media (hover:hover){.cal-d:hover{background:var(--panel2)}}
 .cal-d.today{box-shadow:inset 0 0 0 1px var(--mute)}
 .cal-d.in{background:var(--panel2);border-radius:0}
-.cal-d.edge,.cal-d.edge:hover{background:var(--ink);color:var(--bg)}
+.cal-d.edge{background:var(--ink);color:var(--bg)}
+@media (hover:hover){.cal-d.edge:hover{background:var(--ink);color:var(--bg)}}
 .ndlg .hue{-webkit-appearance:none;appearance:none;width:100%;height:12px;padding:0;border:0;border-radius:99px;background:linear-gradient(90deg,hsl(0 80% 85%),hsl(60 80% 85%),hsl(120 80% 85%),hsl(180 80% 85%),hsl(240 80% 85%),hsl(300 80% 85%),hsl(360 80% 85%))}
 .hue::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--ink);border:3px solid var(--panel);box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .hue::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--ink);border:3px solid var(--panel)}
@@ -163,14 +164,70 @@ aside{backdrop-filter:none;-webkit-backdrop-filter:none}
 .card-arrow,.jam-arrow{display:none!important}
 .g .tl .card-del{position:absolute;top:10px;left:10px;right:auto;bottom:auto;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;
   background:rgba(0,0,0,.72);color:#fff;font:600 12px/1 var(--b);opacity:0;transition:opacity .15s,background .15s;z-index:3;cursor:pointer}
-.g:hover .tl .card-del,.g:focus-visible .tl .card-del{opacity:1}
-.g .tl .card-del:hover{background:#d92d20}
+.g:focus-visible .tl .card-del{opacity:1}
+@media (hover:hover){.g:hover .tl .card-del{opacity:1}}
+@media (hover:hover){.g .tl .card-del:hover{background:#d92d20}}
 @media(hover:none){.g .tl .card-del{opacity:1}}
 .g .tl.has-banner:after{display:none}
 
 /* ===== Theme toggle: same spot, easier to spot ===== */
 .theme-toggle{position:relative;width:38px;height:38px;border:1px solid var(--line);color:var(--ink);background:var(--panel);box-shadow:0 1px 2px rgba(0,0,0,.08)}
 .theme-toggle svg{display:block}
-.theme-toggle:hover{background:var(--panel2);border-color:var(--mute)}
-.theme-toggle[data-tip]:hover:after,.theme-toggle[data-tip]:focus-visible:after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;white-space:nowrap;
+@media (hover:hover){.theme-toggle:hover{background:var(--panel2);border-color:var(--mute)}}
+.theme-toggle[data-tip]:focus-visible:after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;white-space:nowrap;
   background:var(--ink);color:var(--bg);padding:6px 10px;border-radius:8px;font:500 12px var(--b);z-index:40;pointer-events:none}
+@media (hover:hover){.theme-toggle[data-tip]:hover:after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;white-space:nowrap;
+  background:var(--ink);color:var(--bg);padding:6px 10px;border-radius:8px;font:500 12px var(--b);z-index:40;pointer-events:none}}
+
+/* ===== Offline banner + error view ===== */
+.netbar{position:fixed;top:0;left:0;right:0;z-index:300;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;background:#d92d20;color:#fff;text-align:center;font:600 13px var(--b);transform:translateY(-110%);transition:transform .25s}
+.netbar.show{transform:none}
+.err{max-width:420px;margin:12vh auto 0;text-align:center}
+.err-tile{width:96px;height:96px;margin:0 auto 18px;border-radius:28px;display:grid;place-items:center;font:800 44px var(--d);background:hsl(350 70% 90%);color:#7a1d2c}
+.err h2{font:800 28px var(--d);letter-spacing:-.04em;margin:0 0 8px}.err p{color:var(--mute);margin:0 0 20px}
+
+/* ===== Touch and phone polish ===== */
+html{-webkit-text-size-adjust:100%}
+button,a,[role=button],.chip,.g,.jam-card,.item,label.drop,.cal-d{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+main,.list,.pub-scroll{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+@supports(height:100dvh){.app{height:100dvh}}
+.tabbar,.mobile-theme{display:none}
+@media(max-width:900px){
+  /* heavy GPU hints made taps lag and miss on iPhone */
+  .page,.page.page-enter{will-change:auto!important;filter:none!important}
+  aside{width:min(84vw,320px)}
+  aside:not(.mobile-open){visibility:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s linear .3s}
+  aside.mobile-open{visibility:visible}
+  .mobile-topbar{height:52px;padding:6px 14px}
+  .mobile-menu,.mobile-search,.mobile-acct{display:none!important}
+  .mobile-theme{display:grid;margin-left:auto}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:18;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));
+    background:var(--side);border-top:1px solid var(--line)}
+  .tb{display:grid;justify-items:center;align-content:center;gap:2px;min-height:54px;border:0;background:none;color:var(--mute);cursor:pointer;border-radius:14px;font:500 11px var(--b)}
+  .tb[aria-current="true"]{color:var(--ink)}
+  .tb:active{background:var(--panel2);transform:scale(.95)}
+  .tb-add .tbi{width:48px;height:32px;border-radius:12px;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+  .tb-add{color:var(--ink)}
+  .page{padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px))!important}
+  .site-credit{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .toasts{left:12px;right:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px))}
+  .btn{min-height:46px}.btn.small{min-height:40px}
+  .item{min-height:52px}
+}
+@media(max-width:600px){
+  .home-heading{margin-bottom:20px!important}
+  .home-heading h1{font-size:38px!important}
+  .hero-card{min-height:280px!important;padding:20px!important;border-radius:22px!important}
+  .hero-copy h2{font-size:30px!important}
+  .jam-big-cover{height:130px!important;border-radius:20px!important}
+  .jam-title-row h1{font-size:34px!important}
+  .jam-top{margin-bottom:12px}
+  .stats{gap:18px 26px!important}.stats strong{font-size:22px!important}
+  .section-heading h2{font-size:24px!important}
+  .jam-cover{height:120px!important}
+  .jam-info{padding:14px!important}
+  .tabs{gap:6px}.tabs button{padding:9px 15px}
+  .lead{font-size:16px!important}
+  .grid{gap:14px 10px!important}
+  .g strong{font-size:15px}
+}

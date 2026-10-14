@@ -14,7 +14,7 @@ function err(r){if(r&&r.error){window.NG.toast(r.error.message,"!");throw r.erro
 B.load=async function(){
   if(!B.enabled){fill(J,DEMO_J);fill(G,DEMO_G);done();return}
   var r=await Promise.all([sb.from("jams").select("*"),sb.from("games").select("*,profiles(username)").order("created_at",{ascending:false}),sb.from("jam_members").select("jam_id,user_id")]);
-  r.forEach(function(x){if(x.error)window.NG.toast("Could not load data","!")});
+  if(r.some(function(x){return x.error})){window.NG.fail();return}
   var counts={},mine={};
   (r[2].data||[]).forEach(function(m){counts[m.jam_id]=(counts[m.jam_id]||0)+1;if(B.user&&m.user_id===B.user.id)mine[m.jam_id]=true});
   B.mine=mine;

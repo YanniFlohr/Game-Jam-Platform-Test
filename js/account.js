@@ -6,8 +6,9 @@ var TI={system:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stro
   light:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
   dark:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'};
 function fixTheme(){var i=$("themeIcon"),b=$("themeBtn");if(!i||!b||i.querySelector("svg"))return;
-  var t=localStorage.getItem("nanogram-theme")||"system";i.innerHTML=TI[t]||TI.system;
+  var t=localStorage.getItem("nanogram-theme")||"system";i.innerHTML=TI[t]||TI.system;var mt=$("mobileTheme");if(mt)mt.innerHTML=TI[t]||TI.system;
   b.dataset.tip="Theme: "+({system:"System",light:"Light",dark:"Dark"}[t]||"System")+". Click to change"}
+if($("mobileTheme"))$("mobileTheme").addEventListener("click",function(){$("themeBtn").click()});
 if($("themeIcon")){new MutationObserver(fixTheme).observe($("themeIcon"),{childList:true});fixTheme()}
 var nd=document.createElement("dialog");nd.id="nd";nd.className="ndlg";document.body.appendChild(nd);
 var file=null,busy=false;
@@ -102,7 +103,7 @@ function newjam(j){
 }
 
 /* ---------- account card ---------- */
-function renderAcct(){
+function renderAcct(){tabs();
   var a=$("acct"),m=$("mobileAcct"),p=B.profile;
   if(!B.enabled){a.innerHTML='<div class="acct-note">Accounts are off. Add your Supabase keys in js/config.js.</div>';}
   else if(B.user){a.innerHTML='<button class="acct-me" data-nd="account"><span class="avatar">'+esc((p&&p.username||"?").charAt(0).toUpperCase())+'</span><span><strong>'+esc(p?p.username:"Account")+'</strong><small>'+(B.isAdmin()?"Admin":"Signed in")+'</small></span></button><button class="btn dark wide" data-nd="upload">Upload a game</button>';}
@@ -135,6 +136,12 @@ function decorate(){
       if(B.isAdmin())hr.insertAdjacentHTML("beforeend",'<button class="btn dark small" data-nd="newjam">New jam</button>');jh.appendChild(hr)}
     if(gh&&B.user&&!gh.querySelector(".head-right")){var h2=document.createElement("div");h2.className="head-right";var cl=gh.querySelector(".count-label");if(cl)h2.appendChild(cl);
       h2.insertAdjacentHTML("beforeend",'<button class="btn dark small" data-nd="upload">Publish a game</button>');gh.appendChild(h2)}}
+  tabs();
+}
+function tabs(){
+  var tb=$("tabbar");if(!tb)return;
+  tb.querySelector('[data-tab="home"]').setAttribute("aria-current",String(NG.cur()==="all"));
+  tb.querySelector('[data-tab="me"] .tbl').textContent=B.user?"Account":"Sign in";
 }
 function decorateGame(){
   var t=document.querySelector("#dc h3"),c=document.querySelector("#dc .creator strong");if(!t)return;
@@ -225,6 +232,26 @@ nd.addEventListener("submit",function(e){e.preventDefault();var f=e.target.id,v=
       else{if(!("banner_url" in row))row.banner_url=null;row.created_by=B.user.id;await B.insert("jams",row)}
       nd.close();await B.load()}
   },f==="gameForm"?(editing?"Changes saved":"Game published"):f==="jamForm"?(editingJam?"Jam updated":"Jam created"):f==="authForm"?"Welcome!":"")});
+
+/* ---------- phone tab bar ---------- */
+$("tabbar").addEventListener("click",function(e){
+  var b=e.target.closest("[data-tab]");if(!b)return;var k=b.dataset.tab;
+  if(k==="jams")$("mobileMenu").click();
+  else{$("sidebar").classList.remove("mobile-open");
+    if(k==="home")NG.navigate("all");
+    else if(k==="search")$("mobileSearch").click();
+    else if(k==="add")B.user?upload():auth("login");
+    else if(k==="me")B.user?account():auth("login")}
+});
+
+/* ---------- connection problems ---------- */
+var nb=document.createElement("div");nb.id="netbar";nb.className="netbar";nb.setAttribute("role","status");
+nb.textContent="You are offline. Some things may not work until you reconnect.";document.body.appendChild(nb);
+function net(){nb.classList.toggle("show",!navigator.onLine)}
+window.addEventListener("offline",net);
+window.addEventListener("online",function(){net();NG.toast("Back online","\u2713");if(B.enabled&&!B.mock)B.load()});net();
+NG.fail=function(){$("pg").innerHTML='<div class="err"><div class="err-tile">!</div><h2>Can\'t reach the server</h2><p>Check your connection, then try again.</p><button class="btn dark" id="retry" type="button">Try again</button></div>'};
+$("pg").addEventListener("click",function(e){if(e.target.id==="retry"){e.target.textContent="Trying...";B.load()}});
 
 B.onChange(renderAcct);renderAcct();B.init();
 })();

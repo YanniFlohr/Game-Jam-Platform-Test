@@ -401,7 +401,7 @@ aside{
 }
 
 
-.search-trigger:hover{
+@media (hover:hover){.search-trigger:hover{
 
   border-color:
     rgba(120,120,120,.3);
@@ -411,7 +411,7 @@ aside{
 
   transform:translateY(-1px);
 
-}
+}}
 
 
 .search-icon{
@@ -519,13 +519,13 @@ aside{
 }
 
 
-.item:hover{
+@media (hover:hover){.item:hover{
 
   background:var(--panel2);
 
   transform:translateX(2px);
 
-}
+}}
 
 
 .item.selected{
@@ -703,13 +703,13 @@ aside{
 }
 
 
-.btn:hover{
+@media (hover:hover){.btn:hover{
 
   transform:translateY(-2px);
 
   box-shadow:var(--shadow);
 
-}
+}}
 
 
 .btn:active{
@@ -1269,11 +1269,11 @@ main{
 }
 
 
-.filter:hover{
+@media (hover:hover){.filter:hover{
 
   color:var(--ink);
 
-}
+}}
 
 
 .filter.active{
@@ -1343,7 +1343,7 @@ main{
 }
 
 
-.jam-card:hover{
+@media (hover:hover){.jam-card:hover{
 
   transform:
     translateY(-6px);
@@ -1354,7 +1354,7 @@ main{
   border-color:
     rgba(100,100,100,.2);
 
-}
+}}
 
 
 .jam-card:active{
@@ -1425,13 +1425,13 @@ main{
 }
 
 
-.jam-card:hover .jam-letter{
+@media (hover:hover){.jam-card:hover .jam-letter{
 
   transform:
     scale(1.08)
     rotate(-3deg);
 
-}
+}}
 
 
 .jam-status{
@@ -1523,13 +1523,13 @@ main{
 }
 
 
-.jam-card:hover .jam-arrow{
+@media (hover:hover){.jam-card:hover .jam-arrow{
 
   opacity:1;
 
   transform:none;
 
-}
+}}
 
 
 .jam-info{
@@ -1719,7 +1719,7 @@ main{
 }
 
 
-.g:hover .tl{
+@media (hover:hover){.g:hover .tl{
 
   transform:
     translateY(-4px)
@@ -1727,16 +1727,16 @@ main{
 
   box-shadow:var(--shadow);
 
-}
+}}
 
 
-.g:hover .card-arrow{
+@media (hover:hover){.g:hover .card-arrow{
 
   opacity:1;
 
   transform:none;
 
-}
+}}
 
 
 .g:active .tl{
@@ -1848,7 +1848,7 @@ main{
 }
 
 
-.back:hover,
+@media (hover:hover){.back:hover,
 .favourite:hover,
 .share-btn:hover{
 
@@ -1858,7 +1858,7 @@ main{
 
   transform:translateY(-1px);
 
-}
+}}
 
 
 .favourite.active{
@@ -2185,11 +2185,11 @@ main{
 }
 
 
-.tab:hover{
+@media (hover:hover){.tab:hover{
 
   color:var(--ink);
 
-}
+}}
 
 
 .tab.active{
@@ -2626,12 +2626,16 @@ main{
 }
 
 
-.command-result:hover,
 .command-result.active{
 
   background:var(--panel2);
 
 }
+@media (hover:hover){.command-result:hover{
+
+  background:var(--panel2);
+
+}}
 
 
 .command-letter{
@@ -2689,12 +2693,16 @@ main{
 }
 
 
-.command-result:hover .command-arrow,
 .command-result.active .command-arrow{
 
   opacity:1;
 
 }
+@media (hover:hover){.command-result:hover .command-arrow{
+
+  opacity:1;
+
+}}
 
 
 .command-empty{
@@ -3552,9 +3560,9 @@ dialog::backdrop{
 }
 
 
-.g:hover .tl{
+@media (hover:hover){.g:hover .tl{
   transform:translateY(-4px) scale(1.012);
-}
+}}
 
 
 /* =========================================================
@@ -3591,9 +3599,9 @@ dialog::backdrop{
 }
 
 
-.item:hover{
+@media (hover:hover){.item:hover{
   transform:translateX(2px);
-}
+}}
 
 
 .item[aria-current="true"]{
