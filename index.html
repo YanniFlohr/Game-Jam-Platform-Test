@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Jams">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="img/icon-180.png">
+  <link rel="icon" href="img/icon-192.png">
   <meta name="description" content="Nanogram Jams — build something. Ship it.">
 
   <title>Nanogram Jams</title>
@@ -44,6 +50,12 @@ window.addEventListener("load",function(){if(!window.NG)show()})})();
 
     <!-- SIDEBAR -->
     <aside id="sidebar">
+
+      <div class="sheet-head" id="sheetHead">
+        <span class="grab" aria-hidden="true"></span>
+        <strong>Jams</strong>
+        <button class="sheet-x" id="sheetX" type="button" aria-label="Close">✕</button>
+      </div>
 
       <div class="brand">
         <div class="mk" aria-hidden="true">

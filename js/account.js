@@ -139,7 +139,7 @@ function decorate(){
   tabs();
 }
 function tabs(){
-  var tb=$("tabbar");if(!tb)return;
+  var tb=$("tabbar");if(!tb)return;tb.classList.remove("hide");
   tb.querySelector('[data-tab="home"]').setAttribute("aria-current",String(NG.cur()==="all"));
   tb.querySelector('[data-tab="me"] .tbl').textContent=B.user?"Account":"Sign in";
 }
@@ -232,6 +232,20 @@ nd.addEventListener("submit",function(e){e.preventDefault();var f=e.target.id,v=
       else{if(!("banner_url" in row))row.banner_url=null;row.created_by=B.user.id;await B.insert("jams",row)}
       nd.close();await B.load()}
   },f==="gameForm"?(editing?"Changes saved":"Game published"):f==="jamForm"?(editingJam?"Jam updated":"Jam created"):f==="authForm"?"Welcome!":"")});
+
+/* ---------- Jams sheet: close button, swipe down to close ---------- */
+(function(){
+  var sh=$("sheetHead"),as=$("sidebar"),y0=null,dy=0;if(!sh)return;
+  $("sheetX").addEventListener("click",function(){as.classList.remove("mobile-open")});
+  sh.addEventListener("touchstart",function(e){y0=e.touches[0].clientY;dy=0;as.style.transition="none"},{passive:true});
+  sh.addEventListener("touchmove",function(e){if(y0===null)return;dy=Math.max(0,e.touches[0].clientY-y0);as.style.transform="translateY("+dy+"px)"},{passive:true});
+  sh.addEventListener("touchend",function(){if(y0===null)return;as.style.transition="";as.style.transform="";if(dy>90)as.classList.remove("mobile-open");y0=null;dy=0});
+})();
+/* ---------- tab bar hides while scrolling down, returns on scroll up ---------- */
+(function(){
+  var m=document.querySelector("main"),tb=$("tabbar"),last=0;if(!m||!tb)return;
+  m.addEventListener("scroll",function(){var y=m.scrollTop,d=y-last;if(Math.abs(d)<10)return;tb.classList.toggle("hide",d>0&&y>90);last=y},{passive:true});
+})();
 
 /* ---------- phone tab bar ---------- */
 $("tabbar").addEventListener("click",function(e){

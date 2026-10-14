@@ -231,3 +231,28 @@ main,.list,.pub-scroll{overscroll-behavior:contain;-webkit-overflow-scrolling:to
   .grid{gap:14px 10px!important}
   .g strong{font-size:15px}
 }
+
+/* ===== Taps blocked on phones: decorative layers must never catch touches ===== */
+.hero-art,.hero-art *,.hero-ring,.cover-noise,.cover-orbit,.big-letter,.hero-letter,.jam-letter{pointer-events:none}
+.hero-copy,.hero-actions,.acts,.jam-top,.top-actions{position:relative;z-index:6}
+
+/* ===== Jams menu: slides up from the bottom on phones ===== */
+.sheet-head{display:none}
+.tabbar{transition:transform .25s ease}
+.tabbar.hide{transform:translateY(105%)}
+@media(max-width:900px){
+  aside{position:fixed;top:auto;right:0;bottom:0;left:0;width:auto;height:min(78dvh,640px);border-right:0;border-top:1px solid var(--line);border-radius:26px 26px 0 0;
+    transform:translateY(105%);box-shadow:0 -24px 60px rgba(0,0,0,.28);background:var(--side);backdrop-filter:none;-webkit-backdrop-filter:none;padding-bottom:env(safe-area-inset-bottom,0px)}
+  aside.mobile-open{transform:none}
+  .brand,.acct,.side-tools{display:none}
+  .sheet-head{display:flex;align-items:center;justify-content:space-between;position:relative;flex:none;padding:22px 18px 6px;touch-action:none}
+  .sheet-head strong{font:800 24px var(--d);letter-spacing:-.04em}
+  .grab{position:absolute;top:8px;left:50%;width:42px;height:5px;margin-left:-21px;border-radius:99px;background:var(--line)}
+  .sheet-x{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-size:14px}
+  .list{flex:1;min-height:0;overflow-y:auto;padding:4px 12px 8px}
+  .sf{flex:none;padding:10px 16px 14px}
+  /* less fixed chrome: the top bar scrolls away, the tab bar hides while reading */
+  .mobile-topbar{position:static;height:48px;padding:4px 16px 0;background:transparent;border-bottom:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .tabbar{padding:4px 6px calc(4px + env(safe-area-inset-bottom,0px))}
+  .tb{min-height:50px}
+}
